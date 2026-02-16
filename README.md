@@ -42,5 +42,7 @@ The app is organized into layers inside `composeApp/src/commonMain/kotlin/com/ex
 ## Run tests
 
 ```bash
-./gradlew :composeApp:commonTest
+./gradlew :composeApp:allTests
 ```
+
+> Note: On CI or local machines, make sure Android SDK is configured (`ANDROID_HOME` or `local.properties` with `sdk.dir=...`) because Android unit tests are part of `allTests`.
