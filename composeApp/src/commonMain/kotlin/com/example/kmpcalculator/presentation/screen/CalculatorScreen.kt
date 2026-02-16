@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.kmpcalculator.presentation.action.CalculatorAction
 import com.example.kmpcalculator.presentation.component.CalculatorButton
 import com.example.kmpcalculator.presentation.state.CalculatorUiState
-import com.example.kmpcalculator.ui.theme.AppColors
+import com.example.kmpcalculator.ui.theme.AppTheme
 
 private val calculatorLayout = listOf(
     listOf("C", "⌫", "/", "*"),
@@ -93,10 +93,13 @@ private fun String.toAction(): CalculatorAction {
 
 @Composable
 private fun buttonColors(label: String): Pair<Color, Color> {
+    val themeButtonColors = AppTheme.buttonColors
+    val defaultContentColor = AppTheme.colors.onBackground
+
     return when (label) {
-        "C", "⌫" -> AppColors.ActionButton to MaterialTheme.colorScheme.onBackground
-        "+", "-", "*", "/" -> AppColors.OperatorButton to MaterialTheme.colorScheme.onBackground
-        "=" -> AppColors.EqualButton to AppColors.OnEqualButton
-        else -> AppColors.DigitButton to MaterialTheme.colorScheme.onBackground
+        "C", "⌫" -> themeButtonColors.actionButton to defaultContentColor
+        "+", "-", "*", "/" -> themeButtonColors.operatorButton to defaultContentColor
+        "=" -> themeButtonColors.equalButton to themeButtonColors.onEqualButton
+        else -> themeButtonColors.digitButton to defaultContentColor
     }
 }

@@ -3,8 +3,19 @@ package com.example.kmpcalculator.ui.theme
 import androidx.compose.ui.graphics.Color
 
 object AppColors {
-    val LightPrimary = Color(0xFF0061A4)
-    val LightOnPrimary = Color(0xFFFFFFFF)
+    // Shared tokens
+    val Accent = Color(0xFFFF5A00)
+    val Teal200 = Color(0xFF03DAC5)
+    val Teal700 = Color(0xFF00838A)
+    val White = Color(0xFFFFFFFF)
+    val Black = Color(0xFF000000)
+    val Blue = Color(0xFF0061A4)
+    val BlueHint = Color(0xFFB5BCC4)
+    val GreyInput = Color(0xFFE5E5E5)
+
+    // Material light theme tokens
+    val LightPrimary = Blue
+    val LightOnPrimary = White
     val LightPrimaryContainer = Color(0xFFD1E4FF)
     val LightOnPrimaryContainer = Color(0xFF001D36)
     val LightBackground = Color(0xFFF8F9FF)
@@ -12,8 +23,9 @@ object AppColors {
     val LightSurface = Color(0xFFF8F9FF)
     val LightOnSurface = Color(0xFF191C20)
     val LightError = Color(0xFFBA1A1A)
-    val LightOnError = Color(0xFFFFFFFF)
+    val LightOnError = White
 
+    // Material dark theme tokens
     val DarkPrimary = Color(0xFF9ECAFF)
     val DarkOnPrimary = Color(0xFF003258)
     val DarkPrimaryContainer = Color(0xFF00497D)
@@ -25,9 +37,35 @@ object AppColors {
     val DarkError = Color(0xFFFFB4AB)
     val DarkOnError = Color(0xFF690005)
 
-    val DigitButton = Color(0xFFE4ECFF)
-    val OperatorButton = Color(0xFF99CCFF)
-    val ActionButton = Color(0xFFFFDAD7)
-    val EqualButton = Color(0xFF0061A4)
-    val OnEqualButton = Color(0xFFFFFFFF)
+    // Alternate card verification palette (optional flow)
+    val CardPrimary = Accent
+    val CardOnPrimary = White
+    val CardSecondary = Accent
+    val CardOnSecondary = White
+    val CardTertiary = Accent
+    val CardBackground = Black
+    val CardOnBackground = White
+    val CardSurface = Black
+    val CardOnSurface = White
+
+    // Calculator component tokens (light)
+    val LightDigitButton = Color(0xFFE4ECFF)
+    val LightOperatorButton = Color(0xFF99CCFF)
+    val LightActionButton = Color(0xFFFFDAD7)
+    val LightEqualButton = LightPrimary
+    val LightOnEqualButton = White
+
+    // Calculator component tokens (dark)
+    val DarkDigitButton = Color(0xFF2A3440)
+    val DarkOperatorButton = Color(0xFF3E6C96)
+    val DarkActionButton = Color(0xFF6A4242)
+    val DarkEqualButton = DarkPrimary
+    val DarkOnEqualButton = DarkOnPrimary
+
+    // Backward-compatible aliases
+    val DigitButton = LightDigitButton
+    val OperatorButton = LightOperatorButton
+    val ActionButton = LightActionButton
+    val EqualButton = LightEqualButton
+    val OnEqualButton = LightOnEqualButton
 }

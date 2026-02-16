@@ -21,9 +21,10 @@ The app is organized into layers inside `composeApp/src/commonMain/kotlin/com/ex
   - `screen/CalculatorScreen.kt`
   - `component/CalculatorButton.kt`
 - `ui/theme/`
-  - `Color.kt` (global color palette)
-  - `Theme.kt` (global app theme)
+  - `Color.kt` (centralized color tokens by role and palette)
+  - `Theme.kt` (global app theme + palette selection + semantic component colors)
   - `Type.kt` (typography)
+  - `Shape.kt` (shared Material shapes)
 - `di/AppModule.kt`
   - Centralized object graph and ViewModel creation.
 
@@ -32,6 +33,7 @@ The app is organized into layers inside `composeApp/src/commonMain/kotlin/com/ex
 - Colors are defined in `ui/theme/Color.kt` via the `AppColors` object.
 - Theme is defined in `ui/theme/Theme.kt` via `CalculatorTheme`.
 - The current Material color scheme is globally accessible via `AppTheme.colors`.
+- Semantic calculator button colors are accessible via `AppTheme.buttonColors`.
 
 ## Run Android
 
