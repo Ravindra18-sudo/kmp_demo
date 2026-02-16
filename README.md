@@ -1,35 +1,46 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# KMP Calculator (Compose Multiplatform)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This repository contains a Kotlin Multiplatform (KMP) calculator project using Compose Multiplatform UI with a clean architecture setup.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Architecture
 
-### Build and Run Android Application
+The app is organized into layers inside `composeApp/src/commonMain/kotlin/com/example/kmpcalculator`:
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+- `data/`
+  - `repository/CalculatorRepositoryImpl.kt`  
+    Contains expression parsing/evaluation logic.
+- `domain/`
+  - `model/CalculationResult.kt`
+  - `repository/CalculatorRepository.kt`
+  - `usecase/`  
+    Independent use cases (`AppendInput`, `DeleteInput`, `ClearInput`, `EvaluateExpression`).
+- `presentation/`
+  - `action/CalculatorAction.kt`
+  - `state/CalculatorUiState.kt`
+  - `viewmodel/CalculatorViewModel.kt`
+  - `screen/CalculatorScreen.kt`
+  - `component/CalculatorButton.kt`
+- `ui/theme/`
+  - `Color.kt` (global color palette)
+  - `Theme.kt` (global app theme)
+  - `Type.kt` (typography)
+- `di/AppModule.kt`
+  - Centralized object graph and ViewModel creation.
 
-### Build and Run iOS Application
+## Global Theme and Color Access
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+- Colors are defined in `ui/theme/Color.kt` via the `AppColors` object.
+- Theme is defined in `ui/theme/Theme.kt` via `CalculatorTheme`.
+- The current Material color scheme is globally accessible via `AppTheme.colors`.
 
----
+## Run Android
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+```bash
+./gradlew :composeApp:assembleDebug
+```
+
+## Run tests
+
+```bash
+./gradlew :composeApp:commonTest
+```
