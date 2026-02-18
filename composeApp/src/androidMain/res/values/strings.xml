@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KMP Calculator</string>
+    <string name="a_4_digit_code_sent_to">A 4 digit code sent to</string>
+    <string name="enter_it_below2">Enter it below</string>
+    <string name="otp_hint">0000</string>
+    <string name="did_t_recieve_it">Didn&apos;t receive it?</string>
+    <string name="we_ll_resend_code_in">We&apos;ll resend code in %1$s</string>
+    <string name="resend">Resend</string>
+    <string name="continuetext">Continue</string>
+    <string name="back_arrow">&#x2039;</string>
 </resources>
