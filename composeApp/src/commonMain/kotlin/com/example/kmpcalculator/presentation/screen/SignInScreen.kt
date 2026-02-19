@@ -32,15 +32,16 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 
 private const val MaxCodeLength = 4
+private const val MaxPhoneLength = 15
 private val PhoneNumberHighlight = Color(0xFFFF6B3D)
 
 @Composable
 fun SignInScreen(
     modifier: Modifier = Modifier,
-    phoneNumber: String = "(213) 555-1212",
     resendIn: String = "00:05",
     onBackClick: () -> Unit = {},
 ) {
+    var phoneNumber by rememberSaveable { mutableStateOf("") }
     var verificationCode by rememberSaveable { mutableStateOf("") }
 
     Column(
@@ -70,6 +71,25 @@ fun SignInScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
+        OutlinedTextField(
+            value = phoneNumber,
+            onValueChange = { newValue ->
+                phoneNumber = newValue.filter(Char::isDigit).take(MaxPhoneLength)
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            placeholder = {
+                Text(
+                    text = "Enter phone number",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = buildAnnotatedString {
                 append("A 4-digit code sent to ")
@@ -79,7 +99,7 @@ fun SignInScreen(
                         fontWeight = FontWeight.Medium,
                     ),
                 ) {
-                    append(phoneNumber)
+                    append(if (phoneNumber.isBlank()) "your number" else phoneNumber)
                 }
             },
             style = MaterialTheme.typography.bodyLarge,
